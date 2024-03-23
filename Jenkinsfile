@@ -11,14 +11,11 @@ pipeline {
 
 
     stages{
-            stage('Clone Repository') {
-            steps {
-                script {
-                    git url: 'https://github.com/StintriLamah/aws-eks-flux.git',
-                        branch: 'main'
-                }
-            }
-        }
+              stage('Clone repository') {
+      
+
+        checkout scm
+    }
             
 
             stage('Docker build and login') {
