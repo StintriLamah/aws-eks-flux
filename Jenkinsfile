@@ -4,18 +4,21 @@ pipeline {
         AWS_ACCOUNT_ID="120042965046"
         AWS_DEFAULT_REGION="eu-west-1"
         IMAGE_REPO_NAME="devops-test"
-        IMAGE_TAG="tests-${BUILD_NUMBER}"
+        IMAGE_TAG="test-${BUILD_NUMBER}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     
     }
 
 
     stages{
-              stage('Clone repository') {
-      
-
-        checkout scm
-    }
+            stage('Clone Repository') {
+            steps {
+                script {
+                    git url: 'https://github.com/StintriLamah/aws-eks-flux.git',
+                        branch: 'main'
+                }
+            }
+        }
             
 
             stage('Docker build and login') {
@@ -41,7 +44,14 @@ pipeline {
 
 
             }
-
+    // Building Docker images
+    // stage('Building image') {
+    //   steps{
+    //     script {
+    //       sh "docker build --network=host -t ${env.GIT_REPO_NAME} ."
+    //     }
+    //   }
+    // }
 
     // Uploading Docker images into AWS ECR
     
