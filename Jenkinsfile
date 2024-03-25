@@ -11,24 +11,31 @@ pipeline {
 
 
     stages{
-        // stage('Checkout') {
-        //     steps {
-        //         // Clean workspace before checkout
-        //         cleanWs()
-                
-        //         // Checkout the code from the repository
-        //         git branch: 'main', 
-        //             url: 'https://github.com/StintriLamah/aws-eks-flux.git'
-        //     }
-        // }
-            stage('Clone Repository') {
+     stage('Checkout') {
             steps {
+                // Clean workspace before checkout
+                cleanWs()
+                
+                // Checkout the code from the repository
                 script {
-                    git url: 'https://github.com/StintriLamah/aws-eks-flux.git',
-                        branch: 'main'
+                    try {
+                        git branch: 'main', 
+                            url: 'https://github.com/StintriLamah/aws-eks-flux.git'
+                    } catch (Exception e) {
+                        echo "Failed to checkout code: ${e.message}"
+                        error "Failed to checkout code"
+                    }
                 }
             }
         }
+        //     stage('Clone Repository') {
+        //     steps {
+        //         script {
+        //             git url: 'https://github.com/StintriLamah/aws-eks-flux.git',
+        //                 branch: 'main'
+        //         }
+        //     }
+        // }
             
 
             stage('Docker build and login') {
