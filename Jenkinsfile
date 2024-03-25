@@ -11,7 +11,7 @@ pipeline {
 
 
     stages{
-     stage('Checkout') {
+   stage('Checkout') {
             steps {
                 // Clean workspace before checkout
                 cleanWs()
@@ -19,8 +19,9 @@ pipeline {
                 // Checkout the code from the repository
                 script {
                     try {
-                        git branch: 'main', 
-                            url: 'https://github.com/StintriLamah/aws-eks-flux.git'
+                        echo "Attempting to checkout code..."
+                        checkout scm
+                        echo "Code checkout successful"
                     } catch (Exception e) {
                         echo "Failed to checkout code: ${e.message}"
                         error "Failed to checkout code"
