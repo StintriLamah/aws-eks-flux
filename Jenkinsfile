@@ -13,8 +13,6 @@ pipeline {
     stages{
    stage('Checkout') {
             steps {
-                // Clean workspace before checkout
-                cleanWs()
                 
                 // Checkout the code from the repository
                 script {
