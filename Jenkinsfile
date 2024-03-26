@@ -4,7 +4,7 @@ pipeline {
         AWS_ACCOUNT_ID="120042965046"
         AWS_DEFAULT_REGION="eu-west-1"
         IMAGE_REPO_NAME="devops-test"
-        IMAGE_TAG=BUILDVERSION()
+        IMAGE_TAG=uat-BUILDVERSION()
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     
     }
