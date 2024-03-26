@@ -4,7 +4,7 @@ pipeline {
         AWS_ACCOUNT_ID="120042965046"
         AWS_DEFAULT_REGION="eu-west-1"
         IMAGE_REPO_NAME="devops-test"
-        IMAGE_TAG="dev-${BUILD_NUMBER}"
+        IMAGE_TAG=BUILDVERSION()
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     
     }
@@ -83,7 +83,10 @@ pipeline {
          }
         }
     }
-    
+    def BUILDVERSION() {
+    timestamp=Calendar.getInstance().getTime().format('YYYYMMddHHmmss',TimeZone.getTimeZone('EAT'))
+    return timestamp
+
     }
 
 }
