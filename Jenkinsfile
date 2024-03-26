@@ -83,10 +83,11 @@ pipeline {
          }
         }
     }
-    def BUILDVERSION() {
+ 
+
+}
+   def BUILDVERSION() {
     timestamp=Calendar.getInstance().getTime().format('YYYYMMddHHmmss',TimeZone.getTimeZone('EAT'))
     return timestamp
 
     }
-
-}
